@@ -12,26 +12,24 @@ Here, ENV['ldap_settings_file'] is being picked up from the env but it can be a 
 
 The ldap.yml file is structured like so:
 
-setting1:
-  -
-    host: 'xxx.xxx.xxx.xxx'
-    base: 'dc=setting1,dc=local'
-    uid: sAMAccountName
-    port: '636'
-    method: 'ssl'
-    bind_dn: 'username'
-    password: 'password'
-setting2:
-  -
-    host: 'xxx.xxx.xxx.xxx'
-    base: 'dc=setting2,dc=example,dc=com'
-    uid: sAMAccountName
-    port: '389'
-    method: 'plain'
-    bind_dn: "username"
-    password: 'password'
-
-
+    setting1:
+      -
+        host: 'xxx.xxx.xxx.xxx'
+        base: 'dc=setting1,dc=local'
+        uid: sAMAccountName
+        port: '636'
+        method: 'ssl'
+        bind_dn: 'username'
+        password: 'password'
+    setting2:
+      -
+        host: 'xxx.xxx.xxx.xxx'
+        base: 'dc=setting2,dc=example,dc=com'
+        uid: sAMAccountName
+        port: '389'
+        method: 'plain'
+        bind_dn: "username"
+        password: 'password'
 
 Use the LDAP strategy as a middleware in your application:
 
