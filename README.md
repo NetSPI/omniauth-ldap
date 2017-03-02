@@ -3,9 +3,10 @@
 == LDAP
 
 If you are using devise, your devise.rb would need:
- config.omniauth :ldap,
-         :ldap_config => YAML.load(File.read(File.expand_path(ENV['ldap_settings_file'], __FILE__))),
-         :form => LdapController.action(:new)
+
+     config.omniauth :ldap,
+                     :ldap_config => YAML.load(File.read(File.expand_path(ENV['ldap_settings_file'], __FILE__))),
+                     :form => LdapController.action(:new)
          
 Here, ENV['ldap_settings_file'] is being picked up from the env but it can be a full file path to ldap.yml file. 
 
