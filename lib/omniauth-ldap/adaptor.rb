@@ -38,7 +38,7 @@ module OmniAuth
         raise ArgumentError.new(message.join(",") +" MUST be provided") unless message.empty?
       end
       def initialize(configuration={})
-        @connections = []
+        @connections = {}
         configuration[:ldap_config].each do |k,v|
           Adaptor.validate(v.first) 
           @configuration = v.first.dup 
@@ -63,7 +63,7 @@ module OmniAuth
                     :password => @password
                   }
           config[:auth] = @auth 
-          @connections << Net::LDAP.new(config)
+          @connections[k] = Net::LDAP.new(config)
         end  
 
         
@@ -78,7 +78,8 @@ module OmniAuth
 
       def bind_as(args = {})
         result = false
-        @connections.find do |connection|
+        connection = @connections[(args.delete(:domain))]
+        # @connections.find do |connection|
           begin
             connection.open do |me|
               rs = me.search(args)
@@ -100,7 +101,7 @@ module OmniAuth
             puts e.message
           end
           result
-        end
+        # end
 
         result
       end
